@@ -20,9 +20,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.List;
 
-@EnableWebMvc
 @EnableSwagger2
 @Configuration
+@ComponentScan(basePackages = "com.personal.keepnote.controller")
 public class SwaggerConfiguration {
     @Bean
     public Docket buildDocket() {
