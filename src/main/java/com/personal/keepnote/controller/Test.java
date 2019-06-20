@@ -2,6 +2,7 @@ package com.personal.keepnote.controller;
 
 import com.personal.keepnote.persistence.dao.SysUserMapper;
 import com.personal.keepnote.persistence.entity.SysUserExample;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -18,6 +19,7 @@ public class Test {
     public String test() {
         return "hello,word!";
     }
+
 
     @RequestMapping("/aa")
     public String aa() {
