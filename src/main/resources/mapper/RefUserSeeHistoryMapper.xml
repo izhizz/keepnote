@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.keepnote.persistence.dao.RefUserSeeHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.personal.keepnote.persistence.entity.RefUserSeeHistory">
+    <constructor>
+      <arg column="master_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="see_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="dateTime" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    master_user_id, see_user_id, dateTime
+  </sql>
+  <select id="selectByExample" parameterType="com.personal.keepnote.persistence.entity.RefUserSeeHistoryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ref_user_see_history
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.personal.keepnote.persistence.entity.RefUserSeeHistoryExample">
+    delete from ref_user_see_history
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.personal.keepnote.persistence.entity.RefUserSeeHistory">
+    insert into ref_user_see_history (master_user_id, see_user_id, dateTime
+      )
+    values (#{masterUserId,jdbcType=INTEGER}, #{seeUserId,jdbcType=INTEGER}, #{datetime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.personal.keepnote.persistence.entity.RefUserSeeHistory">
+    insert into ref_user_see_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="masterUserId != null">
+        master_user_id,
+      </if>
+      <if test="seeUserId != null">
+        see_user_id,
+      </if>
+      <if test="datetime != null">
+        dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="masterUserId != null">
+        #{masterUserId,jdbcType=INTEGER},
+      </if>
+      <if test="seeUserId != null">
+        #{seeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null">
+        #{datetime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ref_user_see_history
+    <set>
+      <if test="record.masterUserId != null">
+        master_user_id = #{record.masterUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seeUserId != null">
+        see_user_id = #{record.seeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.datetime != null">
+        dateTime = #{record.datetime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ref_user_see_history
+    set master_user_id = #{record.masterUserId,jdbcType=INTEGER},
+      see_user_id = #{record.seeUserId,jdbcType=INTEGER},
+      dateTime = #{record.datetime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
