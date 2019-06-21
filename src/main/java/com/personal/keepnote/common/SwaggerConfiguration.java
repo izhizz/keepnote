@@ -44,7 +44,7 @@ public class SwaggerConfiguration {
                 .apiInfo(buildApiInfo()).forCodeGeneration(true)
                 .select()
                 //要扫描的API(Controller)基础包
-                .apis(RequestHandlerSelectors.basePackage("com.wulianedu.sdring.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.personal.keepnote.controller"))
                 .paths(PathSelectors.any())
                 .build()
 //               全部方法添加head参数
@@ -65,8 +65,8 @@ public class SwaggerConfiguration {
     private ApiInfo buildApiInfo() {
 
         return new ApiInfoBuilder()
-                .title("时代数维智慧体育课API")
-                .description("体育课接口文档")
+                .title("小队伍研发第一个项目")
+                .description("记账本")
                 .version("1.0.1")
                 .build();
 

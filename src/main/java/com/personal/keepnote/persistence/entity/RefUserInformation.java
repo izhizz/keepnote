@@ -1,20 +1,32 @@
 package com.personal.keepnote.persistence.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="com.personal.keepnote.persistence.entity.RefUserInformation")
 public class RefUserInformation {
+    @ApiModelProperty(value="发起用户id")
     private Integer sendUserId;
 
+    @ApiModelProperty(value="收到用户id")
     private Integer reciveUserId;
 
+    @ApiModelProperty(value="金额")
     private Double price;
 
+    @ApiModelProperty(value="1收取2收取确认3缴清4缴清确认")
     private Integer flag;
 
+    @ApiModelProperty(value="发起时间")
     private Long sendTime;
 
+    @ApiModelProperty(value="回复时间")
     private Long replyTime;
 
+    @ApiModelProperty(value="发送备注")
     private String sendRemark;
 
+    @ApiModelProperty(value="回复备注")
     private String replyMark;
 
     public RefUserInformation(Integer sendUserId, Integer reciveUserId, Double price, Integer flag, Long sendTime, Long replyTime, String sendRemark, String replyMark) {

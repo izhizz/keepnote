@@ -1,8 +1,14 @@
 package com.personal.keepnote.persistence.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="com.personal.keepnote.persistence.entity.RefUserOtherInfoKey")
 public class RefUserOtherInfoKey {
+    @ApiModelProperty(value="用户id")
     private Integer sUserId;
 
+    @ApiModelProperty(value="查看用户id")
     private Integer rUserId;
 
     public RefUserOtherInfoKey(Integer sUserId, Integer rUserId) {

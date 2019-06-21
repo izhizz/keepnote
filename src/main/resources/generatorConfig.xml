@@ -11,7 +11,10 @@
 
     <!-- 一个数据库一个context -->
     <context id="default">
-
+        <plugin type="mybatis.generator.plugins.GeneratorSwagger2Doc">
+            <property name="apiModelAnnotationPackage" value="io.swagger.annotations.ApiModel" />
+            <property name="apiModelPropertyAnnotationPackage" value="io.swagger.annotations.ApiModelProperty" />
+        </plugin>
         <!-- 注释生成设置 -->
         <commentGenerator>
             <!-- 是否生成注释代时间戳-->
@@ -34,7 +37,6 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <!--===========================-->
 
 
 
@@ -77,53 +79,53 @@
                <!--enableDeleteByExample="false" enableSelectByExample="false"-->
                <!--selectByExampleQueryId="false">-->
         <!--</table>-->
-        <!--<table  tableName="sys_user" domainObjectName="SysUser"-->
-                <!--enableCountByExample="false"-->
-                <!--enableUpdateByExample="true"-->
-                <!--enableDeleteByExample="true"-->
-                <!--enableSelectByExample="true"-->
-                <!--selectByExampleQueryId="true">-->
-        <!--</table>-->
+        <table  tableName="sys_user" domainObjectName="SysUser"
+                enableCountByExample="false"
+                enableUpdateByExample="true"
+                enableDeleteByExample="true"
+                enableSelectByExample="true"
+                selectByExampleQueryId="true">
+        </table>
 
-        <!--<table  tableName="use_type" domainObjectName="UserType"-->
-                <!--enableCountByExample="false"-->
-                <!--enableUpdateByExample="true"-->
-                <!--enableDeleteByExample="true"-->
-                <!--enableSelectByExample="true"-->
-                <!--selectByExampleQueryId="true">-->
-        <!--</table>-->
-
-
-        <!--<table  tableName="ref_user_type_info" domainObjectName="RefUserTypeInfo"-->
-                <!--enableCountByExample="false"-->
-                <!--enableUpdateByExample="true"-->
-                <!--enableDeleteByExample="true"-->
-                <!--enableSelectByExample="true"-->
-                <!--selectByExampleQueryId="true">-->
-        <!--</table>-->
+        <table  tableName="use_type" domainObjectName="UserType"
+                enableCountByExample="false"
+                enableUpdateByExample="true"
+                enableDeleteByExample="true"
+                enableSelectByExample="true"
+                selectByExampleQueryId="true">
+        </table>
 
 
-        <!--<table  tableName="ref_user_see_history" domainObjectName="RefUserSeeHistory"-->
-                <!--enableCountByExample="false"-->
-                <!--enableUpdateByExample="true"-->
-                <!--enableDeleteByExample="true"-->
-                <!--enableSelectByExample="true"-->
-                <!--selectByExampleQueryId="true">-->
-        <!--</table>-->
-       <!--<table  tableName="ref_user_other_info" domainObjectName="RefUserOtherInfo"-->
-                <!--enableCountByExample="false"-->
-                <!--enableUpdateByExample="true"-->
-                <!--enableDeleteByExample="true"-->
-                <!--enableSelectByExample="true"-->
-                <!--selectByExampleQueryId="true">-->
-        <!--</table>-->
-        <!--<table  tableName="ref_user_information" domainObjectName="RefUserInformation"-->
-                <!--enableCountByExample="false"-->
-                <!--enableUpdateByExample="true"-->
-                <!--enableDeleteByExample="true"-->
-                <!--enableSelectByExample="true"-->
-                <!--selectByExampleQueryId="true">-->
-        <!--</table>-->
+        <table  tableName="ref_user_type_info" domainObjectName="RefUserTypeInfo"
+                enableCountByExample="false"
+                enableUpdateByExample="true"
+                enableDeleteByExample="true"
+                enableSelectByExample="true"
+                selectByExampleQueryId="true">
+        </table>
+
+
+        <table  tableName="ref_user_see_history" domainObjectName="RefUserSeeHistory"
+                enableCountByExample="false"
+                enableUpdateByExample="true"
+                enableDeleteByExample="true"
+                enableSelectByExample="true"
+                selectByExampleQueryId="true">
+        </table>
+       <table  tableName="ref_user_other_info" domainObjectName="RefUserOtherInfo"
+                enableCountByExample="false"
+                enableUpdateByExample="true"
+                enableDeleteByExample="true"
+                enableSelectByExample="true"
+                selectByExampleQueryId="true">
+        </table>
+        <table  tableName="ref_user_information" domainObjectName="RefUserInformation"
+                enableCountByExample="false"
+                enableUpdateByExample="true"
+                enableDeleteByExample="true"
+                enableSelectByExample="true"
+                selectByExampleQueryId="true">
+        </table>
         <table  tableName="info_password" domainObjectName="InfoPassword"
                 enableCountByExample="false"
                 enableUpdateByExample="true"

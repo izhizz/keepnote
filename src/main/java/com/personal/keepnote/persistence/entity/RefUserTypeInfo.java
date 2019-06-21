@@ -1,24 +1,38 @@
 package com.personal.keepnote.persistence.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="com.personal.keepnote.persistence.entity.RefUserTypeInfo")
 public class RefUserTypeInfo {
+    @ApiModelProperty(value="主键id")
     private String id;
 
+    @ApiModelProperty(value="用户id")
     private Integer userId;
 
+    @ApiModelProperty(value="类别id")
     private Integer typeId;
 
+    @ApiModelProperty(value="支出/收入[0,1]")
     private Integer moneyFlag;
 
+    @ApiModelProperty(value="个人/公共[0,1]")
     private Integer typeFlag;
 
+    @ApiModelProperty(value="价格")
     private Double price;
 
+    @ApiModelProperty(value="操作时间")
     private Long dataTime;
 
+    @ApiModelProperty(value="当天0晨时间戳")
     private Long dayTime;
 
+    @ApiModelProperty(value="记账选择时间")
     private Long dateTime;
 
+    @ApiModelProperty(value="备注")
     private String remark;
 
     public RefUserTypeInfo(String id, Integer userId, Integer typeId, Integer moneyFlag, Integer typeFlag, Double price, Long dataTime, Long dayTime, Long dateTime, String remark) {
