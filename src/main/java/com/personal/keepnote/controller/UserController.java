@@ -26,16 +26,17 @@ package com.personal.keepnote.controller;
 
 import com.personal.keepnote.common.entity.ResultEntity;
 import com.personal.keepnote.common.utils.MD5Util;
+import com.personal.keepnote.persistence.entity.InfoPassword;
 import com.personal.keepnote.persistence.entity.SysUser;
+import com.personal.keepnote.service.InfoPasswordService;
 import com.personal.keepnote.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +48,8 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
     @Resource
     UserService userService;
-
+    @Resource
+    InfoPasswordService infoPasswordService;
     @ApiOperation(value = "登陆", notes = "登陆")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultEntity login(@ApiParam(name = "username", value = "用户名", required = true) @RequestParam(value = "username") String username,
@@ -60,6 +62,23 @@ public class UserController {
             return ResultEntity.newErrEntity("用户名和密码有误");
         }
 
+    }
+
+    @ApiOperation(value = "注册", notes = "注册")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResultEntity register(@ApiParam(name = "sysUser", value = "用户对象参数", required = true) @RequestBody SysUser sysUser) {
+        if (StringUtils.isEmpty(sysUser.getGroupWord())) {
+            return ResultEntity.newErrEntity("秘钥为空");
+        }
+        if (!infoPasswordService.checkValidResgister(sysUser.getGroupWord())){
+            return ResultEntity.newErrEntity("秘钥无效");
+        }
+        Integer integer = userService.registerUser(sysUser);
+        if (integer != 0) {
+            return ResultEntity.newResultEntity("注册成功");
+        } else {
+            return ResultEntity.newErrEntity("注册参数有误");
+        }
     }
 
 }

@@ -2,9 +2,13 @@ package com.personal.keepnote.persistence.dao;
 
 import com.personal.keepnote.persistence.entity.SysUser;
 import com.personal.keepnote.persistence.entity.SysUserExample;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface SysUserMapper {
     int deleteByExample(SysUserExample example);
 

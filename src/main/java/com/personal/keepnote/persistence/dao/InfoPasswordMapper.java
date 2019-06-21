@@ -3,8 +3,10 @@ package com.personal.keepnote.persistence.dao;
 import com.personal.keepnote.persistence.entity.InfoPassword;
 import com.personal.keepnote.persistence.entity.InfoPasswordExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface InfoPasswordMapper {
     int deleteByExample(InfoPasswordExample example);
 
