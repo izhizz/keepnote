@@ -3,14 +3,14 @@ package com.personal.keepnote.persistence.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserTypeExample {
+public class UseTypeExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UserTypeExample() {
+    public UseTypeExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
