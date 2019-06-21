@@ -39,10 +39,24 @@ public class UseTypeController {
         return new ResultEntityGenerics().newResultEntity(allTopicUseType);
     }
 
-    @ApiOperation(value = "查询子类型", notes = "查询子类型")
-    @RequestMapping(value = "/topic/type", method = RequestMethod.GET)
-    public ResultEntity topicType(@ApiParam(name = "useType", value = "类别对象", required = true) @RequestBody UseType useType) {
+    @ApiOperation(value = "添加新的类型", notes = "添加新的类型")
+    @RequestMapping(value = "/add/type", method = RequestMethod.GET)
+    public ResultEntity addType(@ApiParam(name = "useType", value = "类别对象", required = true) @RequestBody UseType useType) {
         useTypeService.addUseType(useType);
+        return ResultEntity.newResultEntity("添加成功");
+    }
+
+    @ApiOperation(value = "删除类型", notes = "删除类型")
+    @RequestMapping(value = "/delete/type", method = RequestMethod.GET)
+    public ResultEntity deleteType(@ApiParam(name = "id", value = "类别id", required = true) @RequestParam("id") String id) {
+        if (StringUtils.isEmpty(id)) {
+            return ResultEntity.newErrEntity("数据类型有误");
+        }
+        List<UseType> allTopicUseType = useTypeService.getAllChildUseType(Integer.parseInt(id));
+        if (allTopicUseType != null && allTopicUseType.size() != 0) {
+            return ResultEntity.newErrEntity("该类别含有子类别不允许删除");
+        }
+        useTypeService.deleteUseType(Integer.parseInt(id));
         return ResultEntity.newResultEntity("添加成功");
     }
 }
