@@ -27,8 +27,13 @@ public interface UseTypeService {
      */
     int addUseType(UseType useType);
 
-    //    删除标题
+    /**
+     *    删除标题
+     * @param id
+     * @return
+     */
     int deleteUseType(Integer id);
+
 
 
 }

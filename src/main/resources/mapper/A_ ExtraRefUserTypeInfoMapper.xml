@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.personal.keepnote.persistence.dao.A_ExtraRefUserTypeInfoMapper">
-    <select id="">
+    <select id="personalInOutInfo">
         SELECT
-        use_type.id,use_type.type_name,ref_user_type_info.price
+        ref_user_type_info.id AS infoId,use_type.id AS typeId,use_type.type_name AS typeName,ref_user_type_info.price,ref_user_type_info.date_time AS dataTime,ref_user_type_info.remark
         FROM
         ref_user_type_info
         INNER JOIN use_type
