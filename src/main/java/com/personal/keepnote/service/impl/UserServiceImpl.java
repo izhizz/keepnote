@@ -1,5 +1,8 @@
 package com.personal.keepnote.service.impl;
 
+import com.personal.keepnote.persistence.dao.SysUserMapper;
+import com.personal.keepnote.persistence.entity.SysUser;
+import com.personal.keepnote.persistence.entity.SysUserExample;
 import com.personal.keepnote.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

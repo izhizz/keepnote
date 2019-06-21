@@ -1,5 +1,7 @@
 package com.personal.keepnote.service;
 
+import com.personal.keepnote.persistence.entity.SysUser;
+
 public interface UserService {
     /**
      * 登陆用户
