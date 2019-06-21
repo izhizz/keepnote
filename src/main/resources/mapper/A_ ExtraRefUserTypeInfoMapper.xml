@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.keepnote.persistence.dao.A_ExtraRefUserTypeInfoMapper">
+    <select id="">
+        SELECT
+        use_type.id,use_type.type_name,ref_user_type_info.price
+        FROM
+        ref_user_type_info
+        INNER JOIN use_type
+        ON ref_user_type_info.`type_id` = use_type.`id`
+        WHERE ref_user_type_info.`user_id` = #{userId}
+        <if test="typeId!=null">
+            AND ref_user_type_info.`type_id` =#{typeId}
+        </if>
+        <if test="typeFlag!=null">
+            AND ref_user_type_info.`type_flag` = #{typeFlag}
+        </if>
+        ORDER BY ref_user_type_info.date_time DESC
+    </select>
+
+    <select id="personalPriceCount">
+        SELECT
+        use_type.id,use_type.type_name,SUM(ref_user_type_info.price) AS sumPrice
+        FROM
+        ref_user_type_info
+        INNER JOIN use_type
+        ON ref_user_type_info.`type_id` = use_type.`id`
+        WHERE ref_user_type_info.`user_id` = #{userId}
+        <if test="typeId!=null">
+            AND ref_user_type_info.`type_id` =#{typeId}
+        </if>
+            AND ref_user_type_info.`type_flag` = #{typeFlag}
+    </select>
+
+</mapper>

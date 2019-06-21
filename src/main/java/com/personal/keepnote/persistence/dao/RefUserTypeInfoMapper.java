@@ -3,8 +3,10 @@ package com.personal.keepnote.persistence.dao;
 import com.personal.keepnote.persistence.entity.RefUserTypeInfo;
 import com.personal.keepnote.persistence.entity.RefUserTypeInfoExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface RefUserTypeInfoMapper {
     int deleteByExample(RefUserTypeInfoExample example);
 
