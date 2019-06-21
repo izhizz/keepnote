@@ -87,13 +87,13 @@
                 <!--selectByExampleQueryId="true">-->
         <!--</table>-->
 
-        <table  tableName="use_type" domainObjectName="UseType"
-                enableCountByExample="false"
-                enableUpdateByExample="true"
-                enableDeleteByExample="true"
-                enableSelectByExample="true"
-                selectByExampleQueryId="true">
-        </table>
+        <!--<table  tableName="use_type" domainObjectName="UseType"-->
+                <!--enableCountByExample="false"-->
+                <!--enableUpdateByExample="true"-->
+                <!--enableDeleteByExample="true"-->
+                <!--enableSelectByExample="true"-->
+                <!--selectByExampleQueryId="true">-->
+        <!--</table>-->
 
 
         <!--<table  tableName="ref_user_type_info" domainObjectName="RefUserTypeInfo"-->
@@ -126,13 +126,13 @@
                 <!--enableSelectByExample="true"-->
                 <!--selectByExampleQueryId="true">-->
         <!--</table>-->
-        <!--<table  tableName="info_password" domainObjectName="InfoPassword"-->
-                <!--enableCountByExample="false"-->
-                <!--enableUpdateByExample="true"-->
-                <!--enableDeleteByExample="true"-->
-                <!--enableSelectByExample="true"-->
-                <!--selectByExampleQueryId="true">-->
-        <!--</table>-->
+        <table  tableName="info_password" domainObjectName="InfoPassword"
+                enableCountByExample="false"
+                enableUpdateByExample="true"
+                enableDeleteByExample="true"
+                enableSelectByExample="true"
+                selectByExampleQueryId="true">
+        </table>
 
 
     </context>

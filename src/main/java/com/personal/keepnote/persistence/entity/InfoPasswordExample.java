@@ -164,73 +164,73 @@ public class InfoPasswordExample {
             return (Criteria) this;
         }
 
-        public Criteria andKeyIsNull() {
-            addCriterion("key is null");
+        public Criteria andKeyInfoIsNull() {
+            addCriterion("key_info is null");
             return (Criteria) this;
         }
 
-        public Criteria andKeyIsNotNull() {
-            addCriterion("key is not null");
+        public Criteria andKeyInfoIsNotNull() {
+            addCriterion("key_info is not null");
             return (Criteria) this;
         }
 
-        public Criteria andKeyEqualTo(String value) {
-            addCriterion("key =", value, "key");
+        public Criteria andKeyInfoEqualTo(String value) {
+            addCriterion("key_info =", value, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotEqualTo(String value) {
-            addCriterion("key <>", value, "key");
+        public Criteria andKeyInfoNotEqualTo(String value) {
+            addCriterion("key_info <>", value, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyGreaterThan(String value) {
-            addCriterion("key >", value, "key");
+        public Criteria andKeyInfoGreaterThan(String value) {
+            addCriterion("key_info >", value, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyGreaterThanOrEqualTo(String value) {
-            addCriterion("key >=", value, "key");
+        public Criteria andKeyInfoGreaterThanOrEqualTo(String value) {
+            addCriterion("key_info >=", value, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyLessThan(String value) {
-            addCriterion("key <", value, "key");
+        public Criteria andKeyInfoLessThan(String value) {
+            addCriterion("key_info <", value, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyLessThanOrEqualTo(String value) {
-            addCriterion("key <=", value, "key");
+        public Criteria andKeyInfoLessThanOrEqualTo(String value) {
+            addCriterion("key_info <=", value, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyLike(String value) {
-            addCriterion("key like", value, "key");
+        public Criteria andKeyInfoLike(String value) {
+            addCriterion("key_info like", value, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotLike(String value) {
-            addCriterion("key not like", value, "key");
+        public Criteria andKeyInfoNotLike(String value) {
+            addCriterion("key_info not like", value, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyIn(List<String> values) {
-            addCriterion("key in", values, "key");
+        public Criteria andKeyInfoIn(List<String> values) {
+            addCriterion("key_info in", values, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotIn(List<String> values) {
-            addCriterion("key not in", values, "key");
+        public Criteria andKeyInfoNotIn(List<String> values) {
+            addCriterion("key_info not in", values, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyBetween(String value1, String value2) {
-            addCriterion("key between", value1, value2, "key");
+        public Criteria andKeyInfoBetween(String value1, String value2) {
+            addCriterion("key_info between", value1, value2, "keyInfo");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotBetween(String value1, String value2) {
-            addCriterion("key not between", value1, value2, "key");
+        public Criteria andKeyInfoNotBetween(String value1, String value2) {
+            addCriterion("key_info not between", value1, value2, "keyInfo");
             return (Criteria) this;
         }
     }

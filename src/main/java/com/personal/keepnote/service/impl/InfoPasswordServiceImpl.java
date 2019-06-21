@@ -4,7 +4,6 @@ import com.personal.keepnote.persistence.dao.InfoPasswordMapper;
 import com.personal.keepnote.persistence.entity.InfoPassword;
 import com.personal.keepnote.persistence.entity.InfoPasswordExample;
 import com.personal.keepnote.service.InfoPasswordService;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class InfoPasswordServiceImpl implements InfoPasswordService {
         boolean flag = false;
         List<InfoPassword> allInfoPassword = this.getAllInfoPassword();
         for (InfoPassword infoPassword : allInfoPassword) {
-            if (key.equals(infoPassword.getKey())) {
+            if (key.equals(infoPassword.getKeyInfo())) {
                 flag = true;
                 continue;
             }

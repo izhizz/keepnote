@@ -1,5 +1,6 @@
 package com.personal.keepnote.service.impl;
 
+import com.personal.keepnote.common.utils.MD5Util;
 import com.personal.keepnote.persistence.dao.SysUserMapper;
 import com.personal.keepnote.persistence.entity.SysUser;
 import com.personal.keepnote.persistence.entity.SysUserExample;
@@ -28,6 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer registerUser(SysUser user) {
+        user.setPassWord(MD5Util.go(user.getPassWord()));
         return sysUserMapper.insert(user);
     }
 }

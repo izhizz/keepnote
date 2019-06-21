@@ -26,7 +26,6 @@ package com.personal.keepnote.controller;
 
 import com.personal.keepnote.common.entity.ResultEntity;
 import com.personal.keepnote.common.utils.MD5Util;
-import com.personal.keepnote.persistence.entity.InfoPassword;
 import com.personal.keepnote.persistence.entity.SysUser;
 import com.personal.keepnote.service.InfoPasswordService;
 import com.personal.keepnote.service.UserService;
@@ -34,7 +33,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 

@@ -8,12 +8,12 @@ public class InfoPassword {
     @ApiModelProperty(value="id")
     private Integer id;
 
-    @ApiModelProperty(value="key")
-    private String key;
+    @ApiModelProperty(value="keyInfo")
+    private String keyInfo;
 
-    public InfoPassword(Integer id, String key) {
+    public InfoPassword(Integer id, String keyInfo) {
         this.id = id;
-        this.key = key;
+        this.keyInfo = keyInfo;
     }
 
     public InfoPassword() {
@@ -28,11 +28,11 @@ public class InfoPassword {
         this.id = id;
     }
 
-    public String getKey() {
-        return key;
+    public String getKeyInfo() {
+        return keyInfo;
     }
 
-    public void setKey(String key) {
-        this.key = key == null ? null : key.trim();
+    public void setKeyInfo(String keyInfo) {
+        this.keyInfo = keyInfo == null ? null : keyInfo.trim();
     }
 }
