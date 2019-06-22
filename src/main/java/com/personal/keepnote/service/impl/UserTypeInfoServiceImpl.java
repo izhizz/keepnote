@@ -32,21 +32,23 @@ public class UserTypeInfoServiceImpl implements UserTypeInfoService {
 
     @Override
     public int deleteUserTypeInfoByTimeRange(Long time) {
-        return 0;
+        RefUserTypeInfoExample refUserTypeInfoExample = new RefUserTypeInfoExample();
+        refUserTypeInfoExample.createCriteria().andDayTimeLessThan(time);
+        return refUserTypeInfoMapper.deleteByExample(refUserTypeInfoExample);
     }
 
     @Override
     public int insertUserTypeInfo(RefUserTypeInfo userTypeInfo) {
-        return 0;
+        return refUserTypeInfoMapper.insert(userTypeInfo);
     }
 
     @Override
-    public List<Map<String, Object>> personalPriceCount(Integer userId, Integer typeId, Integer tyepFlag) {
-        return null;
+    public List<Map<String, Object>> personalPriceCount(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag) {
+        return a_extraRefUserTypeInfoMapper.personalPriceCount(userId, typeId, tyepFlag,moneyFlag);
     }
 
     @Override
-    public List<Map<String, Object>> personalInOutInfo(Integer userId, Integer typeId, Integer tyepFlag) {
-        return null;
+    public List<Map<String, Object>> personalInOutInfo(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag) {
+        return a_extraRefUserTypeInfoMapper.personalInOutInfo(userId, typeId, tyepFlag,moneyFlag);
     }
 }

@@ -16,7 +16,8 @@ public interface A_ExtraRefUserTypeInfoMapper {
      * @param typeFlag
      * @return
      */
-    List<Map<String, Object>> personalPriceCount(@Param("userId") Integer userId, @Param("typeId") Integer typeId, @Param("typeFlag") Integer typeFlag);
+    List<Map<String, Object>> personalPriceCount(@Param("userId") Integer userId, @Param("typeId") Integer typeId, @Param("typeFlag") Integer typeFlag,@Param("moneyFlag") Integer moneyFlag);
+
 
     /**
      * 个人信息支持详情单个/全部
@@ -25,7 +26,7 @@ public interface A_ExtraRefUserTypeInfoMapper {
      * @param typeFlag
      * @return
      */
-    List<Map<String, Object>> personalInOutInfo(@Param("userId") Integer userId, @Param("typeId") Integer typeId, @Param("typeFlag") Integer typeFlag);
+    List<Map<String, Object>> personalInOutInfo(@Param("userId") Integer userId, @Param("typeId") Integer typeId, @Param("typeFlag") Integer typeFlag,@Param("moneyFlag") Integer moneyFlag);
 
 
 }

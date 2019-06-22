@@ -30,7 +30,7 @@ public class UseTypeController {
     }
 
     @ApiOperation(value = "查询子类型", notes = "查询子类型")
-    @RequestMapping(value = "/topic/type", method = RequestMethod.GET)
+    @RequestMapping(value = "/children/type", method = RequestMethod.GET)
     public ResultEntityGenerics<List<UseType>> childType(@ApiParam(name = "pid", value = "父id", required = true) @RequestParam(value = "pid") String pid) {
         if (StringUtils.isEmpty(pid)) {
             return new ResultEntityGenerics().newResultEntity(-1, "err", "数据类型有误");
@@ -47,7 +47,7 @@ public class UseTypeController {
     }
 
     @ApiOperation(value = "删除类型", notes = "删除类型")
-    @RequestMapping(value = "/delete/type", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/type", method = RequestMethod.DELETE)
     public ResultEntity deleteType(@ApiParam(name = "id", value = "类别id", required = true) @RequestParam("id") String id) {
         if (StringUtils.isEmpty(id)) {
             return ResultEntity.newErrEntity("数据类型有误");

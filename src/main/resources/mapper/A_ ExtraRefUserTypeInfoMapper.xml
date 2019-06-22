@@ -15,6 +15,9 @@
         <if test="typeFlag!=null">
             AND ref_user_type_info.`type_flag` = #{typeFlag}
         </if>
+        <if test="moneyFlag!=null">
+            AND ref_user_type_info.`money_flag` = #{moneyFlag}
+        </if>
         ORDER BY ref_user_type_info.date_time DESC
     </select>
 
@@ -29,7 +32,11 @@
         <if test="typeId!=null">
             AND ref_user_type_info.`type_id` =#{typeId}
         </if>
+
+            AND ref_user_type_info.`money_flag` = #{moneyFlag}
+        <if test="typeFlag!=null">
             AND ref_user_type_info.`type_flag` = #{typeFlag}
+        </if>
     </select>
 
 </mapper>

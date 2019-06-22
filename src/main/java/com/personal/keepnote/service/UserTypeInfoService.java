@@ -1,6 +1,7 @@
 package com.personal.keepnote.service;
 
 import com.personal.keepnote.persistence.entity.RefUserTypeInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,7 @@ public interface UserTypeInfoService {
      * @param tyepFlag
      * @return
      */
-    List<Map<String, Object>> personalPriceCount(Integer userId, Integer typeId, Integer tyepFlag);
+    List<Map<String, Object>> personalPriceCount(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag);
 
     /**
      * 个人信息查看详情单个/全部 支出收入
@@ -56,5 +57,5 @@ public interface UserTypeInfoService {
      * @param tyepFlag
      * @return
      */
-    List<Map<String, Object>> personalInOutInfo(Integer userId, Integer typeId, Integer tyepFlag);
+    List<Map<String, Object>> personalInOutInfo(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag);
 }
