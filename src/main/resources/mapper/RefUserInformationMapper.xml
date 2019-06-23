@@ -3,6 +3,7 @@
 <mapper namespace="com.personal.keepnote.persistence.dao.RefUserInformationMapper">
   <resultMap id="BaseResultMap" type="com.personal.keepnote.persistence.entity.RefUserInformation">
     <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="send_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="recive_user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="price" javaType="java.lang.Double" jdbcType="DOUBLE" />
@@ -72,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    send_user_id, recive_user_id, price, flag, send_time, reply_time, send_remark, reply_mark
+    id, send_user_id, recive_user_id, price, flag, send_time, reply_time, send_remark, 
+    reply_mark
   </sql>
   <select id="selectByExample" parameterType="com.personal.keepnote.persistence.entity.RefUserInformationExample" resultMap="BaseResultMap">
     select
@@ -89,6 +91,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ref_user_information
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ref_user_information
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.personal.keepnote.persistence.entity.RefUserInformationExample">
     delete from ref_user_information
     <if test="_parameter != null">
@@ -96,16 +108,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.personal.keepnote.persistence.entity.RefUserInformation">
-    insert into ref_user_information (send_user_id, recive_user_id, price, 
-      flag, send_time, reply_time, 
-      send_remark, reply_mark)
-    values (#{sendUserId,jdbcType=INTEGER}, #{reciveUserId,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, 
-      #{flag,jdbcType=INTEGER}, #{sendTime,jdbcType=BIGINT}, #{replyTime,jdbcType=BIGINT}, 
-      #{sendRemark,jdbcType=VARCHAR}, #{replyMark,jdbcType=VARCHAR})
+    insert into ref_user_information (id, send_user_id, recive_user_id, 
+      price, flag, send_time, 
+      reply_time, send_remark, reply_mark
+      )
+    values (#{id,jdbcType=INTEGER}, #{sendUserId,jdbcType=INTEGER}, #{reciveUserId,jdbcType=INTEGER}, 
+      #{price,jdbcType=DOUBLE}, #{flag,jdbcType=INTEGER}, #{sendTime,jdbcType=BIGINT}, 
+      #{replyTime,jdbcType=BIGINT}, #{sendRemark,jdbcType=VARCHAR}, #{replyMark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.personal.keepnote.persistence.entity.RefUserInformation">
     insert into ref_user_information
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="sendUserId != null">
         send_user_id,
       </if>
@@ -132,6 +149,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="sendUserId != null">
         #{sendUserId,jdbcType=INTEGER},
       </if>
@@ -161,6 +181,9 @@
   <update id="updateByExampleSelective" parameterType="map">
     update ref_user_information
     <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
       <if test="record.sendUserId != null">
         send_user_id = #{record.sendUserId,jdbcType=INTEGER},
       </if>
@@ -192,7 +215,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update ref_user_information
-    set send_user_id = #{record.sendUserId,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=INTEGER},
+      send_user_id = #{record.sendUserId,jdbcType=INTEGER},
       recive_user_id = #{record.reciveUserId,jdbcType=INTEGER},
       price = #{record.price,jdbcType=DOUBLE},
       flag = #{record.flag,jdbcType=INTEGER},
@@ -203,5 +227,47 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.personal.keepnote.persistence.entity.RefUserInformation">
+    update ref_user_information
+    <set>
+      <if test="sendUserId != null">
+        send_user_id = #{sendUserId,jdbcType=INTEGER},
+      </if>
+      <if test="reciveUserId != null">
+        recive_user_id = #{reciveUserId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=BIGINT},
+      </if>
+      <if test="replyTime != null">
+        reply_time = #{replyTime,jdbcType=BIGINT},
+      </if>
+      <if test="sendRemark != null">
+        send_remark = #{sendRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="replyMark != null">
+        reply_mark = #{replyMark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.personal.keepnote.persistence.entity.RefUserInformation">
+    update ref_user_information
+    set send_user_id = #{sendUserId,jdbcType=INTEGER},
+      recive_user_id = #{reciveUserId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      flag = #{flag,jdbcType=INTEGER},
+      send_time = #{sendTime,jdbcType=BIGINT},
+      reply_time = #{replyTime,jdbcType=BIGINT},
+      send_remark = #{sendRemark,jdbcType=VARCHAR},
+      reply_mark = #{replyMark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

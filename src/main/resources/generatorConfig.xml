@@ -119,20 +119,20 @@
                 <!--enableSelectByExample="true"-->
                 <!--selectByExampleQueryId="true">-->
         <!--</table>-->
-        <!--<table  tableName="ref_user_information" domainObjectName="RefUserInformation"-->
+        <table tableName="ref_user_information" domainObjectName="RefUserInformation"
+               enableCountByExample="false"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <!--<table  tableName="info_password" domainObjectName="InfoPassword"-->
                 <!--enableCountByExample="false"-->
                 <!--enableUpdateByExample="true"-->
                 <!--enableDeleteByExample="true"-->
                 <!--enableSelectByExample="true"-->
                 <!--selectByExampleQueryId="true">-->
         <!--</table>-->
-        <table  tableName="info_password" domainObjectName="InfoPassword"
-                enableCountByExample="false"
-                enableUpdateByExample="true"
-                enableDeleteByExample="true"
-                enableSelectByExample="true"
-                selectByExampleQueryId="true">
-        </table>
 
 
     </context>
