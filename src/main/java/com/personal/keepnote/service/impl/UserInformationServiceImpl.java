@@ -3,15 +3,11 @@ package com.personal.keepnote.service.impl;
 import com.personal.keepnote.common.utils.FingerUtils;
 import com.personal.keepnote.persistence.dao.A_ExtraRefUserInfomationMapper;
 import com.personal.keepnote.persistence.dao.RefUserInformationMapper;
-import com.personal.keepnote.persistence.dao.RefUserTypeInfoMapper;
 import com.personal.keepnote.persistence.entity.RefUserInformation;
-import com.personal.keepnote.persistence.entity.RefUserTypeInfo;
-import com.personal.keepnote.persistence.entity.RefUserTypeInfoExample;
 import com.personal.keepnote.service.UserInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

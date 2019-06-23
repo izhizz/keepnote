@@ -1,10 +1,11 @@
 package com.personal.keepnote.persistence.dao;
 
 import com.personal.keepnote.persistence.entity.RefUserInformation;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface A_ExtraRefUserInfomationMapper {
     /**
      * 批量插入收款信息

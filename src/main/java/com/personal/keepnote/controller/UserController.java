@@ -85,7 +85,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "获得同一key组下全部的用户信息", notes = "获得同一key组下全部的用户信息")
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/group/all/user", method = RequestMethod.POST)
     public ResultEntityGenerics<List<SysUser>> register(HttpServletRequest request) {
         SysUser user = (SysUser) request.getSession().getAttribute("user");
         List<SysUser> sysUserList = userService.getAllSysUser(user.getGroupWord());

@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 @Api(value = "UserType接口信息类", description = "记账信息类")
 @RestController
+@EnableAutoConfiguration
 @RequestMapping("/bookkeeping")
 public class UserTypeInfoController {
     @Resource
@@ -69,7 +71,7 @@ public class UserTypeInfoController {
     }
 
     @ApiOperation(value = "按天查询支出/收入总和", notes = "按天查询支出/收入总和")
-    @RequestMapping(value = "/info/detailed", method = RequestMethod.POST)
+    @RequestMapping(value = "/info/time", method = RequestMethod.POST)
     public ResultEntity getUseTypeCountByTime(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
                                               @ApiParam(name = "typeId", value = "类别id") Integer typeId,
                                               @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
