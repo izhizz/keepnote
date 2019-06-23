@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.keepnote.persistence.dao.A_ExtraRefUserInfomationMapper">
+
+    <insert id="insertBatchRefUserInfomation">
+        INSERT INTO ref_user_information (send_user_id, recive_user_id, price, flag, send_time, send_remark) VALUSES
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.sendUserId},#{item.reciveUserId},#{item.price},#{item.flag},#{item.sendTime},#{item.sendRemark}
+        </foreach>
+    </insert>
+</mapper>
