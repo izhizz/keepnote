@@ -50,23 +50,36 @@ public class UserTypeInfoController {
 
     @ApiOperation(value = "个人单个/全部 总支出/收入", notes = "个人单个/全部 总支出/收入")
     @RequestMapping(value = "/info/count", method = RequestMethod.POST)
-    public ResultEntity insertUseType(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
-                                      @ApiParam(name = "typeId", value = "类别id") Integer typeId,
-                                      @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
-                                      @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag) {
+    public ResultEntity getUseType(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
+                                   @ApiParam(name = "typeId", value = "类别id") Integer typeId,
+                                   @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
+                                   @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag) {
         List<Map<String, Object>> dataList = userTypeInfoService.personalPriceCount(userId, typeId, typeFlag, moneyFlag);
         return ResultEntity.newResultEntity(dataList);
     }
 
     @ApiOperation(value = "个人单个/全部 支出/收入明细", notes = "个人单个/全部 总支出/收入")
     @RequestMapping(value = "/info/detailed", method = RequestMethod.POST)
-    public ResultEntity insertUseTypeInfo(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
-                                          @ApiParam(name = "typeId", value = "类别id") Integer typeId,
-                                          @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
-                                          @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag) {
+    public ResultEntity getUseTypeInfo(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
+                                       @ApiParam(name = "typeId", value = "类别id") Integer typeId,
+                                       @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
+                                       @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag) {
         List<Map<String, Object>> dataList = userTypeInfoService.personalInOutInfo(userId, typeId, typeFlag, moneyFlag);
         return ResultEntity.newResultEntity(dataList);
     }
 
+    @ApiOperation(value = "按天查询支出/收入总和", notes = "按天查询支出/收入总和")
+    @RequestMapping(value = "/info/detailed", method = RequestMethod.POST)
+    public ResultEntity getUseTypeCountByTime(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
+                                              @ApiParam(name = "typeId", value = "类别id") Integer typeId,
+                                              @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
+                                              @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag,
+                                              @ApiParam(name = "beginTime", value = "开始时间") Long beginTime,
+                                              @ApiParam(name = "beginTime", value = "开始时间") Long endTime
+    ) {
+
+        List<Map<String, Object>> dataList = userTypeInfoService.personalTimePriceCount(userId, typeId, typeFlag, moneyFlag, beginTime, endTime);
+        return ResultEntity.newResultEntity(dataList);
+    }
 
 }

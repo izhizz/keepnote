@@ -25,19 +25,23 @@
 package com.personal.keepnote.controller;
 
 import com.personal.keepnote.common.entity.ResultEntity;
+import com.personal.keepnote.common.entity.ResultEntityGenerics;
 import com.personal.keepnote.common.utils.MD5Util;
 import com.personal.keepnote.persistence.entity.SysUser;
+import com.personal.keepnote.persistence.entity.UseType;
 import com.personal.keepnote.service.InfoPasswordService;
 import com.personal.keepnote.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.catalina.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -48,6 +52,7 @@ public class UserController {
     UserService userService;
     @Resource
     InfoPasswordService infoPasswordService;
+
     @ApiOperation(value = "登陆", notes = "登陆")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultEntity login(@ApiParam(name = "username", value = "用户名", required = true) @RequestParam(value = "username") String username,
@@ -68,7 +73,7 @@ public class UserController {
         if (StringUtils.isEmpty(sysUser.getGroupWord())) {
             return ResultEntity.newErrEntity("秘钥为空");
         }
-        if (!infoPasswordService.checkValidResgister(sysUser.getGroupWord())){
+        if (!infoPasswordService.checkValidResgister(sysUser.getGroupWord())) {
             return ResultEntity.newErrEntity("秘钥无效");
         }
         Integer integer = userService.registerUser(sysUser);
@@ -77,6 +82,14 @@ public class UserController {
         } else {
             return ResultEntity.newErrEntity("注册参数有误");
         }
+    }
+
+    @ApiOperation(value = "获得同一key组下全部的用户信息", notes = "获得同一key组下全部的用户信息")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResultEntityGenerics<List<SysUser>> register(HttpServletRequest request) {
+        SysUser user = (SysUser) request.getSession().getAttribute("user");
+        List<SysUser> sysUserList = userService.getAllSysUser(user.getGroupWord());
+        return new ResultEntityGenerics().newResultEntity(sysUserList);
     }
 
 }

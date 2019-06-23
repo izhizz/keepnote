@@ -51,4 +51,9 @@ public class UserTypeInfoServiceImpl implements UserTypeInfoService {
     public List<Map<String, Object>> personalInOutInfo(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag) {
         return a_extraRefUserTypeInfoMapper.personalInOutInfo(userId, typeId, tyepFlag,moneyFlag);
     }
+
+    @Override
+    public List<Map<String, Object>> personalTimePriceCount(Integer userId, Integer typeId, Integer tyepFlag, Integer moneyFlag, Long beginTime, Long endTime) {
+        return a_extraRefUserTypeInfoMapper.personalTimePriceCount(userId, typeId, tyepFlag, moneyFlag, beginTime, endTime);
+    }
 }

@@ -47,7 +47,7 @@ public interface UserTypeInfoService {
      * @param tyepFlag
      * @return
      */
-    List<Map<String, Object>> personalPriceCount(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag);
+    List<Map<String, Object>> personalPriceCount(Integer userId, Integer typeId, Integer tyepFlag, Integer moneyFlag);
 
     /**
      * 个人信息查看详情单个/全部 支出收入
@@ -57,5 +57,17 @@ public interface UserTypeInfoService {
      * @param tyepFlag
      * @return
      */
-    List<Map<String, Object>> personalInOutInfo(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag);
+    List<Map<String, Object>> personalInOutInfo(Integer userId, Integer typeId, Integer tyepFlag, Integer moneyFlag);
+
+    /**
+     *
+     * @param userId
+     * @param typeId
+     * @param tyepFlag
+     * @param moneyFlag
+     * @param beginTime
+     * @param endTime
+     * @return
+     */
+    List<Map<String, Object>> personalTimePriceCount(Integer userId, Integer typeId, Integer tyepFlag, Integer moneyFlag, Long beginTime, Long endTime);
 }

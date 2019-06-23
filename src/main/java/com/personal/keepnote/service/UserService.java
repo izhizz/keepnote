@@ -2,6 +2,8 @@ package com.personal.keepnote.service;
 
 import com.personal.keepnote.persistence.entity.SysUser;
 
+import java.util.List;
+
 public interface UserService {
     /**
      * 登陆用户
@@ -19,4 +21,12 @@ public interface UserService {
      * @return
      */
     Integer registerUser(SysUser user);
+
+    /**
+     * 查看同组的用户
+     *
+     * @param groupKey
+     * @return
+     */
+    List<SysUser> getAllSysUser(String groupKey);
 }

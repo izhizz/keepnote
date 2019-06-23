@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
         sysUserExample.createCriteria().andUserNameEqualTo(username).equals(password);
         SysUser sysUser = null;
         List<SysUser> sysUsers = sysUserMapper.selectByExample(sysUserExample);
-        if (sysUsers!=null && sysUsers.size()!=0){
+        if (sysUsers != null && sysUsers.size() != 0) {
             sysUser = sysUsers.get(0);
         }
         return sysUser;
@@ -31,5 +31,12 @@ public class UserServiceImpl implements UserService {
     public Integer registerUser(SysUser user) {
         user.setPassWord(MD5Util.go(user.getPassWord()));
         return sysUserMapper.insert(user);
+    }
+
+    @Override
+    public List<SysUser> getAllSysUser(String groupKey) {
+        SysUserExample sysUserExample = new SysUserExample();
+        sysUserExample.createCriteria().andGroupWordEqualTo(groupKey);
+        return sysUserMapper.selectByExample(sysUserExample);
     }
 }

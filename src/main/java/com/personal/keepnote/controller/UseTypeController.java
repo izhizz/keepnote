@@ -40,7 +40,7 @@ public class UseTypeController {
     }
 
     @ApiOperation(value = "添加新的类型", notes = "添加新的类型")
-    @RequestMapping(value = "/add/type", method = RequestMethod.GET)
+    @RequestMapping(value = "/add/type", method = RequestMethod.POST)
     public ResultEntity addType(@ApiParam(name = "useType", value = "类别对象", required = true) @RequestBody UseType useType) {
         useTypeService.addUseType(useType);
         return ResultEntity.newResultEntity("添加成功");
@@ -57,6 +57,6 @@ public class UseTypeController {
             return ResultEntity.newErrEntity("该类别含有子类别不允许删除");
         }
         useTypeService.deleteUseType(Integer.parseInt(id));
-        return ResultEntity.newResultEntity("添加成功");
+        return ResultEntity.newResultEntity("删除成功");
     }
 }
