@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 @Api(value = "UserType接口信息类", description = "记账信息类")
 @RestController
@@ -36,14 +38,14 @@ public class UserInformationController {
 
     @ApiOperation(value = "发送收款信息确认", notes = "发送收款信息确认")
     @RequestMapping(value = "/send/acceptance/confirmation", method = RequestMethod.POST)
-    public ResultEntity deleteUseTypeByTime(@ApiParam(name = "id", value = "主键id", required = true) @RequestParam(value = "id") Integer id) {
+    public ResultEntity deleteUseTypeByTime(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam(value = "userId") Integer id) {
         userInformationService.acceptanceInfoConfirmation(id);
         return ResultEntity.newResultEntity("操作成功");
     }
 
     @ApiOperation(value = "收款信息", notes = "收款信息")
     @RequestMapping(value = "/reply/acceptance", method = RequestMethod.POST)
-    public ResultEntity payOffInfo(@ApiParam(name = "id", value = "主键id", required = true) @RequestParam(value = "id") Integer id,
+    public ResultEntity payOffInfo(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam(value = "userId") Integer id,
                                    @ApiParam(name = "replyRemark", value = "收信息人集合", required = true) @RequestParam(value = "replyRemark") String replyRemark) {
         userInformationService.payOffInfo(id, replyRemark);
         return ResultEntity.newResultEntity("操作成功");
@@ -52,9 +54,24 @@ public class UserInformationController {
 
     @ApiOperation(value = "收款信息确认", notes = "收款信息确认")
     @RequestMapping(value = "/reply/acceptance/confirmation", method = RequestMethod.POST)
-    public ResultEntity confirmationOfPaymentInfo(@ApiParam(name = "id", value = "主键id", required = true) @RequestParam(value = "id") Integer id) {
+    public ResultEntity confirmationOfPaymentInfo(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam(value = "userId") Integer id) {
         userInformationService.confirmationOfPaymentInfo(id);
         return ResultEntity.newResultEntity("操作成功");
+    }
+
+
+    @ApiOperation(value = "发送消息查看", notes = "发送消息查看")
+    @RequestMapping(value = "/send/info", method = RequestMethod.POST)
+    public ResultEntity sendInfo(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam(value = "userId") Integer id) {
+        List<Map<String, Object>> sendInfoByUserId = userInformationService.getSendInfoByUserId(id);
+        return ResultEntity.newResultEntity(sendInfoByUserId);
+    }
+
+    @ApiOperation(value = "收到消息查看", notes = "收到消息查看")
+    @RequestMapping(value = "/reply/info", method = RequestMethod.POST)
+    public ResultEntity replyInfo(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam(value = "userId") Integer id) {
+        List<Map<String, Object>> replyInfoByUserId = userInformationService.getReplyInfoByUserId(id);
+        return ResultEntity.newResultEntity(replyInfoByUserId);
     }
 
 

@@ -3,6 +3,7 @@ package com.personal.keepnote.service;
 import com.personal.keepnote.persistence.entity.RefUserInformation;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserInformationService {
     /**
@@ -13,7 +14,7 @@ public interface UserInformationService {
      * @param sendRemark
      * @return
      */
-    Integer sendAcceptanceInfo(Integer sendUserId, Integer[] replyIds, String sendRemark,Double sendPrice);
+    Integer sendAcceptanceInfo(Integer sendUserId, Integer[] replyIds, String sendRemark, Double sendPrice);
 
     /**
      * 收取确认
@@ -39,5 +40,35 @@ public interface UserInformationService {
      */
     Integer confirmationOfPaymentInfo(Integer id);
 
+    /**
+     * 发送的消息
+     *
+     * @param userId
+     * @return
+     */
+    List<RefUserInformation> getSendInfomationByUserId(Integer userId);
 
+    /**
+     * 收到的消息
+     *
+     * @param userId
+     * @return
+     */
+    List<RefUserInformation> getReplyInfomationByUserId(Integer userId);
+
+    /**
+     * 发送的消息
+     *
+     * @param userId
+     * @return
+     */
+    List<Map<String,Object>> getSendInfoByUserId(Integer userId);
+
+    /**
+     * 收到的消息
+     *
+     * @param userId
+     * @return
+     */
+    List<Map<String,Object>> getReplyInfoByUserId(Integer userId);
 }

@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
+
 @Mapper
 public interface A_ExtraRefUserInfomationMapper {
     /**
@@ -14,4 +16,20 @@ public interface A_ExtraRefUserInfomationMapper {
      * @return
      */
     int insertBatchRefUserInfomation(@Param("list") List<RefUserInformation> refUserInformationList);
+
+    /**
+     * 发出的消息
+     *
+     * @param userId
+     * @return
+     */
+    List<Map<String, Object>> sendInfomationByUserId(@Param("userId") Integer userId);
+
+    /**
+     * 收到的消息
+     *
+     * @param userId
+     * @return
+     */
+    List<Map<String, Object>> replyInfomationByUserId(@Param("userId") Integer userId);
 }

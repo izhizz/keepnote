@@ -79,7 +79,6 @@ public class UserTypeInfoController {
                                               @ApiParam(name = "beginTime", value = "开始时间") Long beginTime,
                                               @ApiParam(name = "beginTime", value = "开始时间") Long endTime
     ) {
-
         List<Map<String, Object>> dataList = userTypeInfoService.personalTimePriceCount(userId, typeId, typeFlag, moneyFlag, beginTime, endTime);
         return ResultEntity.newResultEntity(dataList);
     }

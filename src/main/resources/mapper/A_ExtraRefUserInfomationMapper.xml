@@ -8,4 +8,38 @@
             #{item.sendUserId},#{item.reciveUserId},#{item.price},#{item.flag},#{item.sendTime},#{item.sendRemark}
         </foreach>
     </insert>
+    <select id="sendInfomationByUserId" resultType="map">
+        SELECT
+          information.`send_user_id` AS sendUserId,
+          information.`recive_user_id` AS reciveUserId,
+          sys_user.`name` AS userName,
+          information.`price`,
+          information.`flag`,
+          information.`send_time` AS sendTime,
+          information.`send_remark` AS sendRemark,
+          information.`reply_mark` AS replyRemark
+        FROM
+          ref_user_information information
+          INNER JOIN sys_user
+            ON sys_user.`id` = information.`recive_user_id`
+        WHERE information.`send_user_id` = #{userId}
+        ORDER BY send_time ASC
+    </select>
+    <select id="replyInfomationByUserId" resultType="map">
+        SELECT
+          information.`send_user_id` AS sendUserId,
+          information.`recive_user_id` AS reciveUserId,
+          sys_user.`name` AS userName,
+          information.`price`,
+          information.`flag`,
+          information.`send_time` AS sendTime,
+          information.reply_time AS replyTime,
+          information.`reply_mark` AS replyRemark
+        FROM
+          ref_user_information information
+          INNER JOIN sys_user
+            ON sys_user.`id` = information.`send_user_id`
+       WHERE information.`reply_time` = #{userId}
+        ORDER BY information. ASC
+    </select>
 </mapper>
