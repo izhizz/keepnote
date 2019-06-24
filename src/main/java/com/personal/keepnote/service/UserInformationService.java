@@ -4,7 +4,9 @@ import com.personal.keepnote.persistence.entity.RefUserInformation;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author MR FENG
+ */
 public interface UserInformationService {
     /**
      * 发送收款信息

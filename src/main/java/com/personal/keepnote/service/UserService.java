@@ -4,6 +4,9 @@ import com.personal.keepnote.persistence.entity.SysUser;
 
 import java.util.List;
 
+/**
+ * @author MR FENG
+ */
 public interface UserService {
     /**
      * 登陆用户

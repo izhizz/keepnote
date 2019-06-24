@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author MR FENG
+ */
 @Api(value = "UserType接口信息类", description = "记账信息类")
 @RestController
 @EnableAutoConfiguration

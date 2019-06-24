@@ -4,7 +4,9 @@ package com.personal.keepnote.common.entity;
 import com.personal.keepnote.common.utils.GsonUtil;
 import org.apache.commons.lang3.StringUtils;
 
-
+/**
+ * @author MR FENG
+ */
 public class ResultEntity {
 
     public static final String OK_MSG = "ok";

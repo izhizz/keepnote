@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author MR FENG
+ */
 public interface UserTypeInfoService {
     /**
      * 根据id 删除用户记账信息

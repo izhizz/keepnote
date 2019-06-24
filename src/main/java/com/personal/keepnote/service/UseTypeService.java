@@ -4,6 +4,9 @@ import com.personal.keepnote.persistence.entity.UseType;
 
 import java.util.List;
 
+/**
+ * @author MR FENG
+ */
 public interface UseTypeService {
     /**
      * 获得所有1级标题

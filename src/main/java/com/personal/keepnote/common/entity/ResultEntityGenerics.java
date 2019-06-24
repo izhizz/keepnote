@@ -2,7 +2,9 @@ package com.personal.keepnote.common.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+/**
+ * @author MR FENG
+ */
 @ApiModel(description = "返回值信息")
 public class ResultEntityGenerics<T> {
     public static final String OK_MSG = "ok";

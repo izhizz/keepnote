@@ -19,7 +19,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author MR FENG
+ */
 @EnableSwagger2
 @Configuration
 @ComponentScan(basePackages = "com.personal.keepnote.controller")
