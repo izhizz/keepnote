@@ -1,5 +1,6 @@
 package com.personal.keepnote.common.interceptor;
 
+import com.personal.keepnote.common.expection.InfoErrExpection;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -13,16 +14,12 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 
 
     @Override
-    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) {
         Object user = httpServletRequest.getSession().getAttribute("user");
-        if (user!=null){
+        if (user != null) {
             return true;
-        }else{
-
-
-
-
-            return false;
+        } else {
+            throw new InfoErrExpection("aaa");
         }
     }
 
