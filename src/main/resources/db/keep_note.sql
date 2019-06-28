@@ -22,11 +22,13 @@ DROP TABLE IF EXISTS `info_password`;
 
 CREATE TABLE `info_password` (
   `id` int(10) NOT NULL,
-  `key` varchar(20) DEFAULT NULL,
+  `key_info` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `info_password` */
+
+insert  into `info_password`(`id`,`key_info`) values (1,'a');
 
 /*Table structure for table `ref_user_information` */
 
@@ -97,15 +99,17 @@ DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `user_name` varchar(30) DEFAULT NULL COMMENT '登录名',
-  `pass_word` varchar(30) DEFAULT NULL COMMENT '密码',
+  `pass_word` varchar(100) DEFAULT NULL COMMENT '密码',
   `name` varchar(50) DEFAULT NULL COMMENT '用户名',
   `nick_name` varchar(50) DEFAULT NULL COMMENT '昵称',
   `group_word` varchar(50) DEFAULT NULL COMMENT '组密码/验证码',
   `flag` int(2) DEFAULT '0' COMMENT '身份[0使用用户，1管理用户，2拉黑用户]',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_user` */
+
+insert  into `sys_user`(`id`,`user_name`,`pass_word`,`name`,`nick_name`,`group_word`,`flag`) values (1,'1','c4ca4238a0b923820dcc509a6f75849b','1','1','a',0);
 
 /*Table structure for table `use_type` */
 
@@ -116,9 +120,11 @@ CREATE TABLE `use_type` (
   `pid` int(10) DEFAULT '0' COMMENT '父id',
   `type_name` varchar(50) DEFAULT NULL COMMENT '类别名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `use_type` */
+
+insert  into `use_type`(`id`,`pid`,`type_name`) values (1,0,'快乐');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
