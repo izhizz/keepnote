@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.24 (32 bit)
-MySQL - 5.7.22-log : Database - keep_note
+MySQL - 5.7.21-log : Database - keep_note
 *********************************************************************
 */
 
@@ -28,13 +28,14 @@ CREATE TABLE `info_password` (
 
 /*Data for the table `info_password` */
 
-insert  into `info_password`(`id`,`key_info`) values (1,'a');
+insert  into `info_password`(`id`,`key_info`) values (1,'kuaihuoa');
 
 /*Table structure for table `ref_user_information` */
 
 DROP TABLE IF EXISTS `ref_user_information`;
 
 CREATE TABLE `ref_user_information` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `send_user_id` int(10) DEFAULT NULL COMMENT '发起用户id',
   `recive_user_id` int(10) DEFAULT NULL COMMENT '收到用户id',
   `price` double DEFAULT NULL COMMENT '金额',
@@ -42,7 +43,8 @@ CREATE TABLE `ref_user_information` (
   `send_time` bigint(20) DEFAULT NULL COMMENT '发起时间',
   `reply_time` bigint(20) DEFAULT NULL COMMENT '回复时间',
   `send_remark` varchar(200) DEFAULT NULL COMMENT '发送备注',
-  `reply_mark` varchar(200) DEFAULT NULL COMMENT '回复备注'
+  `reply_mark` varchar(200) DEFAULT NULL COMMENT '回复备注',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `ref_user_information` */
@@ -105,11 +107,11 @@ CREATE TABLE `sys_user` (
   `group_word` varchar(50) DEFAULT NULL COMMENT '组密码/验证码',
   `flag` int(2) DEFAULT '0' COMMENT '身份[0使用用户，1管理用户，2拉黑用户]',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_user` */
 
-insert  into `sys_user`(`id`,`user_name`,`pass_word`,`name`,`nick_name`,`group_word`,`flag`) values (1,'1','c4ca4238a0b923820dcc509a6f75849b','1','1','a',0);
+insert  into `sys_user`(`id`,`user_name`,`pass_word`,`name`,`nick_name`,`group_word`,`flag`) values (1,'1','c4ca4238a0b923820dcc509a6f75849b','1','1','a',0),(2,'a','0cc175b9c0f1b6a831c399e269772661','a','a','kuaihuoa',0);
 
 /*Table structure for table `use_type` */
 
@@ -123,8 +125,6 @@ CREATE TABLE `use_type` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `use_type` */
-
-insert  into `use_type`(`id`,`pid`,`type_name`) values (1,0,'快乐');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
