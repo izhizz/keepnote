@@ -27,6 +27,7 @@ package com.personal.keepnote.controller;
 import com.personal.keepnote.common.entity.ResultEntity;
 import com.personal.keepnote.common.entity.ResultEntityGenerics;
 import com.personal.keepnote.common.utils.MD5Util;
+import com.personal.keepnote.common.utils.SendmailUtil;
 import com.personal.keepnote.persistence.entity.SysUser;
 import com.personal.keepnote.persistence.entity.UseType;
 import com.personal.keepnote.service.InfoPasswordService;
@@ -42,6 +43,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 /**
  * @author MR FENG
  */
@@ -58,10 +60,21 @@ public class UserController {
     @ApiOperation(value = "登陆", notes = "登陆")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultEntity login(@ApiParam(name = "username", value = "用户名", required = true) @RequestParam(value = "username") String username,
-                              @ApiParam(name = "password", value = "密码", required = true) @RequestParam(value = "password") String password, HttpServletRequest request) {
+                              @ApiParam(name = "password", value = "密码", required = true) @RequestParam(value = "password") String password, HttpServletRequest request) throws Exception {
         SysUser sysUser = userService.loginUser(username, MD5Util.go(password));
         if (sysUser != null) {
             request.getSession().setAttribute("user", sysUser);
+//            String verifyCode = VerifyCodeUtil.generateVerifyCode(6);
+            String verifyCode = "";
+
+            //邮件主题
+            String emailTitle = "【好学堂】邮箱验证";
+
+            //邮件内容
+            String emailContent = "您正在【好学堂】进行邮箱验证，您的验证码为：" + verifyCode + "，请于10分钟内完成验证！";
+
+            //发送邮件
+            SendmailUtil.sendEmail("", emailTitle, emailContent);
             return ResultEntity.newResultEntity("登陆成功");
         } else {
             return ResultEntity.newErrEntity("用户名和密码有误");
