@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.24 (32 bit)
-MySQL - 5.7.21-log : Database - keep_note
+MySQL - 5.7.22-log : Database - keep_note
 *********************************************************************
 */
 
@@ -61,6 +61,20 @@ CREATE TABLE `ref_user_other_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `ref_user_other_info` */
+
+/*Table structure for table `ref_user_picture` */
+
+DROP TABLE IF EXISTS `ref_user_picture`;
+
+CREATE TABLE `ref_user_picture` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_id` int(10) DEFAULT NULL COMMENT '用户id',
+  `picture_path` varchar(200) DEFAULT NULL COMMENT '图片路径',
+  `flag` int(2) DEFAULT NULL COMMENT '0未使用1使用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `ref_user_picture` */
 
 /*Table structure for table `ref_user_see_history` */
 
