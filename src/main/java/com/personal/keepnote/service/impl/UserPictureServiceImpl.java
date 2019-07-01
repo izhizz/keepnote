@@ -5,9 +5,10 @@ import com.personal.keepnote.persistence.entity.UserPicture;
 import com.personal.keepnote.persistence.entity.UserPictureExample;
 import com.personal.keepnote.service.UserPictureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserPictureServiceImpl implements UserPictureService {
     @Autowired
     UserPictureMapper userPictureMapper;
