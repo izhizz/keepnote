@@ -65,16 +65,16 @@ public class UserController {
         if (sysUser != null) {
             request.getSession().setAttribute("user", sysUser);
 //            String verifyCode = VerifyCodeUtil.generateVerifyCode(6);
-            String verifyCode = "";
-
-            //邮件主题
-            String emailTitle = "【好学堂】邮箱验证";
-
-            //邮件内容
-            String emailContent = "您正在【好学堂】进行邮箱验证，您的验证码为：" + verifyCode + "，请于10分钟内完成验证！";
-
-            //发送邮件
-            SendmailUtil.sendEmail("", emailTitle, emailContent);
+//            String verifyCode = "";
+//
+//            //邮件主题
+//            String emailTitle = "【好学堂】邮箱验证";
+//
+//            //邮件内容
+//            String emailContent = "您正在【好学堂】进行邮箱验证，您的验证码为：" + verifyCode + "，请于10分钟内完成验证！";
+//
+//            //发送邮件
+//            SendmailUtil.sendEmail("", emailTitle, emailContent);
             return ResultEntity.newResultEntity("登陆成功");
         } else {
             return ResultEntity.newErrEntity("用户名和密码有误");

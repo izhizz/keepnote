@@ -5,6 +5,9 @@ import com.personal.keepnote.common.utils.UploadUtils;
 import com.personal.keepnote.persistence.entity.SysUser;
 import com.personal.keepnote.persistence.entity.UserPicture;
 import com.personal.keepnote.service.UserPictureService;
+import com.personal.keepnote.service.UserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +36,21 @@ public class UploadController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UploadController.class);
     @Autowired
     UserPictureService userPictureService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/upload")
-    public void upload(HttpServletResponse response, HttpServletRequest request) throws IOException {
+    @ApiOperation(value = "获取图片", notes = "获取头像")
+    public void upload(HttpServletResponse response,
+                       HttpServletRequest request, @ApiParam(name = "username", value = "登录账号", required = true) @RequestParam(value = "username") String username) throws IOException {
+        SysUser userByUserName = userService.getUserByUserName(username);
+        if (userByUserName == null) {
+            return;
+        }
         SysUser user = (SysUser) request.getSession().getAttribute("user");
         String path = userPictureService.usePicturePath(user.getId(), 1);
         FileInputStream hFile = new FileInputStream(path);      //得到文件大小
-
         int i = hFile.available();
-
         byte data[] = new byte[i];        //读数据
 
         hFile.read(data);         //得到向客户端输出二进制数据的对象

@@ -39,4 +39,16 @@ public class UserServiceImpl implements UserService {
         sysUserExample.createCriteria().andGroupWordEqualTo(groupKey);
         return sysUserMapper.selectByExample(sysUserExample);
     }
+
+    @Override
+    public SysUser getUserByUserName(String username) {
+        SysUserExample sysUserExample = new SysUserExample();
+        sysUserExample.createCriteria().andUserNameEqualTo(username);
+        List<SysUser> sysUsers = sysUserMapper.selectByExample(sysUserExample);
+        SysUser sysUser = null;
+        if (sysUsers != null && sysUsers.size() != 0) {
+            sysUser = sysUsers.get(0);
+        }
+        return sysUser;
+    }
 }

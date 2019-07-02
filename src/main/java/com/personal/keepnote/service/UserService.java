@@ -32,4 +32,12 @@ public interface UserService {
      * @return
      */
     List<SysUser> getAllSysUser(String groupKey);
+
+    /**
+     * 通过用户名获取用户
+     *
+     * @param username
+     * @return
+     */
+    SysUser getUserByUserName(String username);
 }
