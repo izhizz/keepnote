@@ -47,8 +47,8 @@ public class UploadController {
         if (userByUserName == null) {
             return;
         }
-        SysUser user = (SysUser) request.getSession().getAttribute("user");
-        String path = userPictureService.usePicturePath(user.getId(), 1);
+//        SysUser user = (SysUser) request.getSession().getAttribute("user");
+        String path = userPictureService.usePicturePath(userByUserName.getId(), 1);
         FileInputStream hFile = new FileInputStream(path);      //得到文件大小
         int i = hFile.available();
         byte data[] = new byte[i];        //读数据
@@ -70,7 +70,8 @@ public class UploadController {
     @PostMapping("/upload")
     @ResponseBody
     @Transactional
-    public ResultEntity upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+    @ApiOperation(value = "上传头像", notes = "上传头像（需要登陆）")
+    public ResultEntity upload(@ApiParam(name = "file", value = "文件", required = true)@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         SysUser user = (SysUser) request.getSession().getAttribute("user");
         if (file.isEmpty()) {
             return ResultEntity.newResultEntity("上传失败请选择文件");
@@ -97,10 +98,12 @@ public class UploadController {
         userPictureService.addUserPicture(userPicture);
         return ResultEntity.newResultEntity("上传成功");
     }
+
     @PostMapping("/upload/register")
     @ResponseBody
     @Transactional
-    public ResultEntity uploadRegister(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+    @ApiOperation(value = "上传头像", notes = "上传头像（无需登陆）")
+    public ResultEntity uploadRegister(@ApiParam(name = "file", value = "文件", required = true)@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         if (file.isEmpty()) {
             return ResultEntity.newResultEntity("上传失败请选择文件");
         }
@@ -117,7 +120,7 @@ public class UploadController {
             LOGGER.error(e.toString(), e);
             return ResultEntity.newResultEntity("上传失败，无法生成新的文件");
         }
-        return ResultEntity.newResultEntity(filePath+fileName);
+        return ResultEntity.newResultEntity(filePath + fileName);
     }
 }
 
