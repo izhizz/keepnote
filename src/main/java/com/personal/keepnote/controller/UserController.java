@@ -30,13 +30,16 @@ import com.personal.keepnote.common.utils.MD5Util;
 import com.personal.keepnote.common.utils.SendmailUtil;
 import com.personal.keepnote.persistence.entity.SysUser;
 import com.personal.keepnote.persistence.entity.UseType;
+import com.personal.keepnote.persistence.entity.UserPicture;
 import com.personal.keepnote.service.InfoPasswordService;
+import com.personal.keepnote.service.UserPictureService;
 import com.personal.keepnote.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.catalina.User;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,6 +59,8 @@ public class UserController {
     UserService userService;
     @Resource
     InfoPasswordService infoPasswordService;
+    @Resource
+    UserPictureService userPictureService;
 
     @ApiOperation(value = "登陆", notes = "登陆")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -84,14 +89,27 @@ public class UserController {
 
     @ApiOperation(value = "注册", notes = "注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResultEntity register(@ApiParam(name = "sysUser", value = "用户对象参数", required = true) @RequestBody SysUser sysUser) {
+    public ResultEntity register(@ApiParam(name = "sysUser", value = "用户对象参数", required = true) @RequestBody SysUser sysUser,
+                                 @ApiParam(name = "imagePath", value = "图片路径", required = false) @RequestParam(value = "imagePath", required = false) String imagePath) {
         if (StringUtils.isEmpty(sysUser.getGroupWord())) {
             return ResultEntity.newErrEntity("秘钥为空");
         }
         if (!infoPasswordService.checkValidResgister(sysUser.getGroupWord())) {
             return ResultEntity.newErrEntity("秘钥无效");
         }
+        SysUser userByUserName = userService.getUserByUserName(sysUser.getUserName());
+        if (userByUserName != null) {
+            return ResultEntity.newErrEntity("已注册用户名");
+        }
         Integer integer = userService.registerUser(sysUser);
+        SysUser user = userService.loginUser(sysUser.getUserName(), MD5Util.go(sysUser.getPassWord()));
+        if (StringUtils.isNotEmpty(imagePath)) {
+            UserPicture userPicture = new UserPicture();
+            userPicture.setFlag(1);
+            userPicture.setUserId(user.getId());
+            userPicture.setPicturePath(imagePath);
+            userPictureService.addUserPicture(userPicture);
+        }
         if (integer != 0) {
             return ResultEntity.newResultEntity("注册成功");
         } else {

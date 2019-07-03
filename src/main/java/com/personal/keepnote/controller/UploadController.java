@@ -97,6 +97,28 @@ public class UploadController {
         userPictureService.addUserPicture(userPicture);
         return ResultEntity.newResultEntity("上传成功");
     }
+    @PostMapping("/upload/register")
+    @ResponseBody
+    @Transactional
+    public ResultEntity uploadRegister(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+        if (file.isEmpty()) {
+            return ResultEntity.newResultEntity("上传失败请选择文件");
+        }
+        String fileName = file.getOriginalFilename();
+        String filePath = UploadUtils.isCreateDir();
+        File dest = new File(filePath + fileName);
+        try {
+            if (!dest.exists()) {
+                dest.createNewFile();
+            }
+            file.transferTo(dest);
+            LOGGER.info("上传成功");
+        } catch (IOException e) {
+            LOGGER.error(e.toString(), e);
+            return ResultEntity.newResultEntity("上传失败，无法生成新的文件");
+        }
+        return ResultEntity.newResultEntity(filePath+fileName);
+    }
 }
 
 
