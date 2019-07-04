@@ -43,17 +43,21 @@ public class UserTypeInfoServiceImpl implements UserTypeInfoService {
     }
 
     @Override
-    public List<Map<String, Object>> personalPriceCount(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag) {
-        return a_extraRefUserTypeInfoMapper.personalPriceCount(userId, typeId, tyepFlag,moneyFlag);
+    public List<Map<String, Object>> personalPriceCount(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag,Long dayTime) {
+        return a_extraRefUserTypeInfoMapper.personalPriceCount(userId, typeId, tyepFlag,moneyFlag,dayTime);
     }
 
     @Override
-    public List<Map<String, Object>> personalInOutInfo(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag) {
-        return a_extraRefUserTypeInfoMapper.personalInOutInfo(userId, typeId, tyepFlag,moneyFlag);
+    public List<Map<String, Object>> personalInOutInfo(Integer userId, Integer typeId, Integer tyepFlag,Integer moneyFlag,Long dayTime) {
+        return a_extraRefUserTypeInfoMapper.personalInOutInfo(userId, typeId, tyepFlag,moneyFlag,dayTime);
     }
 
     @Override
     public List<Map<String, Object>> personalTimePriceCount(Integer userId, Integer typeId, Integer tyepFlag, Integer moneyFlag, Long beginTime, Long endTime) {
         return a_extraRefUserTypeInfoMapper.personalTimePriceCount(userId, typeId, tyepFlag, moneyFlag, beginTime, endTime);
+    }
+    @Override
+    public List<Map<String, Object>> personalPriceCountByYMD(Integer userId, Integer typeId, Integer tyepFlag, Integer moneyFlag, Long beginTime, Long endTime,Integer flag,String time) {
+        return a_extraRefUserTypeInfoMapper.personalPriceCountByYMD(userId, typeId, tyepFlag, moneyFlag, beginTime, endTime, flag, time);
     }
 }

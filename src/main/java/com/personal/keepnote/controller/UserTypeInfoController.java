@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
+
 /**
  * @author MR FENG
  */
@@ -57,8 +58,11 @@ public class UserTypeInfoController {
     public ResultEntity getUseType(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
                                    @ApiParam(name = "typeId", value = "类别id") Integer typeId,
                                    @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
-                                   @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag) {
-        List<Map<String, Object>> dataList = userTypeInfoService.personalPriceCount(userId, typeId, typeFlag, moneyFlag);
+                                   @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag,
+                                   @ApiParam(name = "dayTime", value = "当天") Long dayTime
+
+    ) {
+        List<Map<String, Object>> dataList = userTypeInfoService.personalPriceCount(userId, typeId, typeFlag, moneyFlag,dayTime);
         return ResultEntity.newResultEntity(dataList);
     }
 
@@ -67,8 +71,9 @@ public class UserTypeInfoController {
     public ResultEntity getUseTypeInfo(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
                                        @ApiParam(name = "typeId", value = "类别id") Integer typeId,
                                        @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
-                                       @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag) {
-        List<Map<String, Object>> dataList = userTypeInfoService.personalInOutInfo(userId, typeId, typeFlag, moneyFlag);
+                                       @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag,
+                                       @ApiParam(name = "dayTime", value = "当天") Long dayTime) {
+        List<Map<String, Object>> dataList = userTypeInfoService.personalInOutInfo(userId, typeId, typeFlag, moneyFlag,dayTime);
         return ResultEntity.newResultEntity(dataList);
     }
 
@@ -85,4 +90,18 @@ public class UserTypeInfoController {
         return ResultEntity.newResultEntity(dataList);
     }
 
+    @ApiOperation(value = "查询总支出/收入月日年", notes = "查询总支出/收入月日年")
+    @RequestMapping(value = "/info/time", method = RequestMethod.POST)
+    public ResultEntity getUseTypeCountByMDY(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
+                                             @ApiParam(name = "typeId", value = "类别id") Integer typeId,
+                                             @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
+                                             @ApiParam(name = "typeFlag", value = "个人/公共[0,1]") Integer typeFlag,
+                                             @ApiParam(name = "beginTime", value = "开始时间") Long beginTime,
+                                             @ApiParam(name = "beginTime", value = "开始时间") Long endTime,
+                                             @ApiParam(name = "flag", value = "标识 3年2月1日",required = true)Integer flag,
+                                             @ApiParam(name = "time", value = "时间/月用201809 /年用2018",required = true)String time
+    ) {
+        List<Map<String, Object>> dataList = userTypeInfoService.personalPriceCountByYMD(userId, typeId, typeFlag, moneyFlag, beginTime, endTime, flag, time);
+        return ResultEntity.newResultEntity(dataList);
+    }
 }

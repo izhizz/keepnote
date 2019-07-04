@@ -17,7 +17,7 @@ public interface A_ExtraRefUserTypeInfoMapper {
      * @param typeFlag
      * @return
      */
-    List<Map<String, Object>> personalPriceCount(@Param("userId") Integer userId, @Param("typeId") Integer typeId, @Param("typeFlag") Integer typeFlag, @Param("moneyFlag") Integer moneyFlag);
+    List<Map<String, Object>> personalPriceCount(@Param("userId") Integer userId, @Param("typeId") Integer typeId, @Param("typeFlag") Integer typeFlag, @Param("moneyFlag") Integer moneyFlag,@Param("dayTime")Long dayTime);
 
 
     /**
@@ -28,7 +28,7 @@ public interface A_ExtraRefUserTypeInfoMapper {
      * @param typeFlag
      * @return
      */
-    List<Map<String, Object>> personalInOutInfo(@Param("userId") Integer userId, @Param("typeId") Integer typeId, @Param("typeFlag") Integer typeFlag, @Param("moneyFlag") Integer moneyFlag);
+    List<Map<String, Object>> personalInOutInfo(@Param("userId") Integer userId, @Param("typeId") Integer typeId, @Param("typeFlag") Integer typeFlag, @Param("moneyFlag") Integer moneyFlag,@Param("dayTime")Long dayTime);
 
     /**
      * 按天查询支出/收入总和
@@ -43,6 +43,12 @@ public interface A_ExtraRefUserTypeInfoMapper {
      */
     List<Map<String, Object>> personalTimePriceCount(@Param("userId") Integer userId, @Param("typeId") Integer typeId,
                                                      @Param("typeFlag") Integer typeFlag, @Param("moneyFlag") Integer moneyFlag, @Param("beginTime") Long beginTime, @Param("endTime") Long endTime);
+
+    List<Map<String, Object>> personalPriceCountByYMD(@Param("userId") Integer userId, @Param("typeId") Integer typeId,
+                                                     @Param("typeFlag") Integer typeFlag, @Param("moneyFlag") Integer moneyFlag,
+                                                      @Param("beginTime") Long beginTime, @Param("endTime") Long endTime,
+                                                        @Param("flag") Integer flag,@Param("time")String time
+    );
 
 
 }

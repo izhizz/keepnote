@@ -19,6 +19,9 @@
         <if test="moneyFlag!=null">
             AND ref_user_type_info.`money_flag` = #{moneyFlag}
         </if>
+        <if test="dayTime!=null">
+            AND ref_user_type_info.day_time=#{dayTime}
+        </if>
         ORDER BY ref_user_type_info.date_time DESC
     </select>
 
@@ -37,6 +40,9 @@
         AND ref_user_type_info.`money_flag` = #{moneyFlag}
         <if test="typeFlag!=null">
             AND ref_user_type_info.`type_flag` = #{typeFlag}
+        </if>
+        <if test="dayTime!=null">
+            AND ref_user_type_info.day_time=#{dayTime}
         </if>
     </select>
 
@@ -64,6 +70,57 @@
             AND ref_user_type_info.date_time &lt;= #{beginTime}
         </if>
         GROUP BY ref_user_type_info.day_time
+        ORDER BY ref_user_type_info.day_time DESC
+    </select>
+
+    <select id="personalPriceCountByYMD" resultType="map">
+        SELECT
+        <if test="flag==1">
+        FROM_UNIXTIME(day_time/1000,'%d') AS dateTime,
+        </if>
+        <if test="flag==2">
+            FROM_UNIXTIME(day_time/1000,'%m')AS dateTime,
+        </if>
+        <if test="flag==3">
+            FROM_UNIXTIME(day_time/1000,'%Y')AS dateTime,
+        </if>
+        use_type.id,use_type.type_name,SUM(ref_user_type_info.price) AS sumPrice
+        FROM
+        ref_user_type_info
+        INNER JOIN use_type
+        ON ref_user_type_info.`type_id` = use_type.`id`
+        WHERE ref_user_type_info.`user_id` = #{userId}
+        <if test="typeId!=null">
+            AND ref_user_type_info.`type_id` =#{typeId}
+        </if>
+        <if test="typeFlag!=null">
+            AND ref_user_type_info.`type_flag` = #{typeFlag}
+        </if>
+        <if test="moneyFlag!=null">
+            AND ref_user_type_info.`money_flag` = #{moneyFlag}
+        </if>
+        <if test="beginTime!=null">
+            AND ref_user_type_info.date_time >= #{beginTime}
+        </if>
+        <if test="endTime!=null">
+            AND ref_user_type_info.date_time &lt;= #{beginTime}
+        </if>
+        <if test="flag==1">
+           AND FROM_UNIXTIME(day_time/1000,'%Y%m')=#{time}
+        </if>
+        <if test="flag==2">
+           AND FROM_UNIXTIME(day_time/1000,'%Y')=#{time}
+        </if>
+        GROUP BY
+        <if test="flag==1">
+            FROM_UNIXTIME(day_time/1000,'%Y%m%d')
+        </if>
+        <if test="flag==2">
+            FROM_UNIXTIME(day_time/1000,'%Y%m')
+        </if>
+        <if test="flag==3">
+            FROM_UNIXTIME(day_time/1000,'%Y')
+        </if>
         ORDER BY ref_user_type_info.day_time DESC
     </select>
 
