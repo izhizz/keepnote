@@ -91,7 +91,7 @@ public class UserTypeInfoController {
     }
 
     @ApiOperation(value = "查询总支出/收入月日年", notes = "查询总支出/收入月日年")
-    @RequestMapping(value = "/info/time", method = RequestMethod.POST)
+    @RequestMapping(value = "/info/YMD", method = RequestMethod.POST)
     public ResultEntity getUseTypeCountByMDY(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
                                              @ApiParam(name = "typeId", value = "类别id") Integer typeId,
                                              @ApiParam(name = "money_flag", value = "支出/收入[0,1]", required = true) Integer moneyFlag,
