@@ -66,7 +66,7 @@ public class UserTypeInfoController {
         return ResultEntity.newResultEntity(dataList);
     }
 
-    @ApiOperation(value = "个人单个/全部 支出/收入明细", notes = "个人单个/全部 总支出/收入")
+    @ApiOperation(value = "当天个人单个/全部 支出/收入明细", notes = "当天个人单个/全部 支出/收入明细")
     @RequestMapping(value = "/info/detailed", method = RequestMethod.POST)
     public ResultEntity getUseTypeInfo(@ApiParam(name = "userId", value = "用户id", required = true) Integer userId,
                                        @ApiParam(name = "typeId", value = "类别id") Integer typeId,
@@ -76,6 +76,8 @@ public class UserTypeInfoController {
         List<Map<String, Object>> dataList = userTypeInfoService.personalInOutInfo(userId, typeId, typeFlag, moneyFlag,dayTime);
         return ResultEntity.newResultEntity(dataList);
     }
+
+
 
     @ApiOperation(value = "按天查询支出/收入总和", notes = "按天查询支出/收入总和")
     @RequestMapping(value = "/info/time", method = RequestMethod.POST)
